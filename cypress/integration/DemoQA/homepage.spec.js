@@ -7,34 +7,32 @@ const resolutions = [
   ];
 
   resolutions.forEach(resolution => {
-    context(`with Home Page displayed in ${resolution.width}x${resolution.height}`, () => {
-        describe('Header Suite', () => {
-            before(() => {
-                cy.visit('/');
-            })
+    describe(`Home Page suite displayed in ${resolution.width}x${resolution.height}`, () => {
+        before(() => {
+            cy.visit('/');
+        })
 
-            beforeEach(() => {
-                cy.viewport(resolution.width, resolution.height);
-            })
+        beforeEach(() => {
+            cy.viewport(resolution.width, resolution.height);
+        })
+
+        context('Header Suite', () => {
 
             it('Verify Header Section', () => {
-                cy.verifyHeaderSection();
+                cy.get('header').should('be.visible');
             })  
         
             it('Verify Tittle Image', () => {
-            cy.verifyHeaderImage();
+                cy.get('[src=\'\/images\/Toolsqa\.jpg\']').should('be.visible');
             })
 
             it('Verify Main Header', () => {
-                cy.verifyMainHeader();
+                cy.get('.main-header').contains("Book Store").should('be.visible');
             });
         
         })
 
-        describe('Left Panel Suite', () => {
-            beforeEach(() => {
-                cy.viewport(resolution.width, resolution.height);
-            })
+        context('Left Panel Suite', () => {
 
             it('Verify Left Panel Accordion', () => {
                 cy.verifyLeftPanelAccordion();
@@ -42,6 +40,25 @@ const resolutions = [
 
             it('Verify Left Panel Accordion Elements', () => {
                 cy.verifyLeftPanelAccordionElements();
+            });
+        });
+
+        context('Book Table Suite', () => {
+
+            before(() => {
+                cy.rowsPerPage();
+            });
+
+            it('Verify Book Table', () => {
+                cy.verifyBookTable();
+            });
+
+            it('Verify Book Table Header', () => {
+                cy.verifyBookTableHeader();
+            });
+
+            it.only('Verify Book Table Element', () => {
+                cy.verifyBookTableElement();
             });
         });
     });
