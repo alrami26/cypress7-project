@@ -31,5 +31,5 @@ Cypress.Commands.add('verifyBookTableElement', (numberRows = '5') => {
 });
 
 Cypress.Commands.add('rowsPerPage', (numberRows = '5') => {
-    cy.get('select').select(numberRows);
+    cy.get('select').should('be.visible').select(numberRows);
 });

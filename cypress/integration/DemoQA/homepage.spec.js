@@ -60,6 +60,18 @@ const resolutions = [
             it('Verify Book Table Element', () => {
                 cy.verifyBookTableElement();
             });
+
+            it('Verify Previos Button', () => {
+                cy.get('.-previous').should('be.visible')
+            });
+
+            it('Verify Next Button', () => {
+                cy.get('.-next').should('be.visible')
+            });
+
+            it('Verify Jump to Page', () => {
+                cy.get('.-pageJump input').should('be.visible')
+            });
         });
     });
 });
