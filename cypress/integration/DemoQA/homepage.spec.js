@@ -57,7 +57,7 @@ const resolutions = [
                 cy.verifyBookTableHeader();
             });
 
-            it.only('Verify Book Table Element', () => {
+            it('Verify Book Table Element', () => {
                 cy.verifyBookTableElement();
             });
         });
