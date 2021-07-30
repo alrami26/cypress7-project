@@ -9,7 +9,9 @@ const resolutions = [
   resolutions.forEach(resolution => {
     describe(`Home Page suite displayed in ${resolution.width}x${resolution.height}`, () => {
         before(() => {
-            cy.visit('/');
+            cy.intercept(`/BookStore/v1/Books`).as('getBooks');
+            cy.visit('/books');
+            cy.wait('@getBooks').its('response.statusCode').should('eq', 200);
         })
 
         beforeEach(() => {

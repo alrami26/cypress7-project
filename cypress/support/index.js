@@ -17,6 +17,7 @@
 import './commands'
 import './homePage/leftPanel'
 import './homePage/bookList'
+import './loginPage/login'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
